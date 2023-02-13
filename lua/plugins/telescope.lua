@@ -10,6 +10,11 @@ return {
       },
       buffers = {
         theme = "dropdown",
+        mappings = {
+          i = {
+            ["<c-d>"] = "delete_buffer",
+          },
+        },
       },
       git_files = {
         theme = "dropdown",

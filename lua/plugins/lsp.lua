@@ -6,13 +6,20 @@ return {
       diagnostics = {
         virtual_text = false,
       },
+      {
+        function()
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+        end,
+      },
+
       servers = {
         tsserver = {},
         pyright = {},
         cssls = {},
         html = {},
         tailwindcss = {},
-        sumneko_lua = {},
+        lua_ls = {},
         yamlls = {},
       },
       setup = {

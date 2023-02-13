@@ -20,6 +20,6 @@ return {
         mode = "background", -- Set the display mode.
         virtualtext = "■",
       },
-    }
-  }
+    },
+  },
 }

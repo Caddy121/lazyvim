@@ -114,16 +114,22 @@ return {
       "SmiteshP/nvim-navic",
       "nvim-tree/nvim-web-devicons", -- optional dependency
     },
-    config = function()
-      require("barbecue").setup()
-    end,
     opts = {
       show_modified = true,
+      show_dirname = false,
+      -- show_basename = false,
     },
   },
   {
-    "p00f/nvim-ts-rainbow",
-    enabled = true,
+    "HiPhish/nvim-ts-rainbow2",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        rainbow = {
+          enable = true,
+          strategy = require("ts-rainbow.strategy.global"),
+        },
+      })
+    end,
   },
   {
     "folke/lsp-colors.nvim",
@@ -145,12 +151,25 @@ return {
     end,
   },
   {
+    "christoomey/vim-tmux-navigator",
+  },
+  {
+    "roobert/tailwindcss-colorizer-cmp.nvim",
+    -- optionally, override the default options:
+    config = function()
+      require("tailwindcss-colorizer-cmp").setup({
+        color_square_width = 2,
+      })
+    end,
+  },
+  {
     "windwp/nvim-autopairs",
     config = function()
-      local autopairs = require("nvim-autopairs")
-      autopairs.setup({
-        check_ts = true, -- enable treesitter
-      })
+      require("nvim-autopairs").setup({})
+      -- local autopairs = require("nvim-autopairs")
+      -- autopairs.setup({
+      --   check_ts = true, -- enable treesitter
+      -- })
       -- automatically add '()' when calling functions/methods
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       local cmp = require("cmp")
@@ -161,8 +180,8 @@ return {
     "monaqa/dial.nvim",
     -- stylua: ignore
     keys = {
-      { "<C-->", function() return require("dial.map").inc_normal() end, expr = true, desc = "Increment" },
-      { "<C-=>", function() return require("dial.map").dec_normal() end, expr = true, desc = "Decrement" },
+      { "<m-a>", function() return require("dial.map").inc_normal() end, expr = true, desc = "Increment" },
+      { "<m-x>", function() return require("dial.map").dec_normal() end, expr = true, desc = "Decrement" },
     },
     config = function()
       local augend = require("dial.augend")

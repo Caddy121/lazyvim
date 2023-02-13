@@ -13,16 +13,23 @@ vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
 vim.keymap.set("n", "<leader>wv", "<C-W>s", { desc = "Split window below" })
 vim.keymap.set("n", "<leader>wh", "<C-W>v", { desc = "Split window right" })
 
--- Tabs
--- vim.keymap.set("n", "<leader>ta", ":tabnew<cr>", { desc = "New tab" })
--- vim.keymap.set("n", "<leader>tc", ":tabclose<cr>", { desc = "Close tab" })
--- vim.keymap.set("n", "<leader>to", ":tabonly<cr>", { desc = "Close all tabs except current one" })
--- vim.keymap.set("n", "<leader>tmp", ":-tabnext<cr>", { desc = "Go to prev tab" })
--- vim.keymap.set("n", "<leader>tmn", ":+tabnext<cr>", { desc = "Go to next tab" })
-
 -- Quit/Save
 vim.keymap.set("n", "<C-q>", ":q! <cr>", { desc = "Quit" })
 vim.keymap.set("n", "<C-w>", ":w <cr>", { desc = "Save" })
+
+-- Toggleterm
+function _G.set_terminal_keymaps()
+  local opts = { buffer = 0 }
+  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+  vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+  vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd j<CR>]], opts)
+  vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd k<CR>]], opts)
+  vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 -- Paste without yanking
 vim.keymap.set("v", "p", '"_dP', { desc = "Paste over selection without yanking" })
