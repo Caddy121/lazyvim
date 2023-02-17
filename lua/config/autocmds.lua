@@ -5,6 +5,7 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Do not add additional comments when entering next line after commenting
 local FormatOptions = augroup("FormatOptions", { clear = true })
 autocmd("BufEnter", {
   group = FormatOptions,
@@ -15,5 +16,13 @@ autocmd("BufEnter", {
       "r", -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
       "o", -- Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
     })
+  end,
+})
+
+-- Treesitter no conceal
+autocmd({ "Filetype" }, {
+  pattern = { "json", "jsonc" },
+  callback = function()
+    vim.wo.conceallevel = 0
   end,
 })

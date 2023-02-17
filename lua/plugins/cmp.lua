@@ -14,15 +14,24 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-      require("cmp").setup({
-        format = require("tailwindcss-colorizer-cmp").formatter,
-      })
+      local sign = function(opts)
+        vim.fn.sign_define(opts.name, {
+          texthl = opts.name,
+          text = opts.text,
+          numhl = "",
+        })
+      end
+
+      sign({ name = "DiagnosticSignError", text = "✘" })
+      sign({ name = "DiagnosticSignWarn", text = "▲" })
+      sign({ name = "DiagnosticSignHint", text = "⚑" })
+      sign({ name = "DiagnosticSignInfo", text = "" })
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
       return {
         completion = {
-          completeopt = "menuone,noselect",
+          completeopt = "menu,menuone,noselect",
         },
         window = {
           completion = cmp.config.window.bordered(),

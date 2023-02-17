@@ -117,7 +117,7 @@ return {
     opts = {
       show_modified = true,
       show_dirname = false,
-      -- show_basename = false,
+      -- show_basename = true,
     },
   },
   {
@@ -152,15 +152,6 @@ return {
   },
   {
     "christoomey/vim-tmux-navigator",
-  },
-  {
-    "roobert/tailwindcss-colorizer-cmp.nvim",
-    -- optionally, override the default options:
-    config = function()
-      require("tailwindcss-colorizer-cmp").setup({
-        color_square_width = 2,
-      })
-    end,
   },
   {
     "windwp/nvim-autopairs",

@@ -4,17 +4,16 @@ return {
     opts = {
       servers = {
         emmet_ls = {
-          filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'javascript',
-            'typescript' },
+          filetypes = { "html", "css", "sass", "scss", "less" },
           init_options = {
             html = {
               options = {
                 -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L26
                 ["bem.enabled"] = true,
-                ["output.attributeQuotes"] = 'single',
+                ["output.attributeQuotes"] = "single",
               },
             },
-          }
+          },
         },
       },
     },

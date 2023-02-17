@@ -1,13 +1,33 @@
 return {
   { "LazyVim/LazyVim", opts = {
-    colorscheme = "horizon",
+    colorscheme = "nightfox",
   } },
+
   { "ellisonleao/gruvbox.nvim", enabled = true },
   { "Shatur/neovim-ayu", enabled = true },
-  { "EdenEast/nightfox.nvim", enabled = true },
   { "catppuccin/nvim", name = "catppuccin", enabled = true },
   { "sainnhe/sonokai", enabled = true },
   { "lunarvim/horizon.nvim", enabled = true },
+  { "embark-theme/vim", enable = true },
+  { "marko-cerovac/material.nvim", enabled = true },
+  { "sainnhe/edge", enabled = true },
+  { "Mofiqul/dracula.nvim", enabled = true },
+  { "cpea2506/one_monokai.nvim", enabled = true },
+  {
+    "EdenEast/nightfox.nvim",
+    enabled = true,
+    config = function()
+      require("nightfox").setup({
+        options = {
+          styles = {
+            types = "italic",
+            keywords = "bold",
+            variables = "italic",
+          },
+        },
+      })
+    end,
+  },
   {
     "rose-pine/neovim",
     name = "rose-pine",
@@ -18,16 +38,8 @@ return {
       })
     end,
   },
-  { "rafamadriz/neon", enabled = true },
-  { "marko-cerovac/material.nvim", enabled = true },
-  { "bluz71/vim-nightfly-colors", enabled = true },
-  { "sainnhe/edge", enabled = true },
-  { "Mofiqul/dracula.nvim", enabled = true },
-  { "projekt0n/github-nvim-theme", enabled = true },
   -- { "olimorris/onedarkpro", enabled = true },
   -- { "rebelot/kanagawa", enabled = true },
-  { "cpea2506/one_monokai.nvim", enabled = true },
-  { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = true, priority = 1000 },
   {
     "uloco/bluloco.nvim",
     lazy = false,
