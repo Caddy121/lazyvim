@@ -4,7 +4,17 @@ return {
     opts = {
       servers = {
         emmet_ls = {
-          filetypes = { "html", "css", "sass", "scss", "less" },
+          filetypes = {
+            "html",
+            "typescriptreact",
+            "javascriptreact",
+            "css",
+            "sass",
+            "scss",
+            "less",
+            "javascript",
+            "typescript",
+          },
           init_options = {
             html = {
               options = {

@@ -10,10 +10,55 @@ return {
   {
     "folke/noice.nvim",
     require("noice").setup({
-      presets = {
-        lsp_doc_border = true,
+      opts = {
+        presets = {
+          long_message_to_split = true,
+          lsp_doc_border = {
+            views = { hover = { border = { style = "shadow" }, position = { row = 1, col = 1 } } },
+          },
+        },
       },
     }),
+  },
+  -- {
+  --   "Kasama/nvim-custom-diagnostic-highlight",
+  --   config = function()
+  --     require("nvim-custom-diagnostic-highlight").setup({})
+  --   end,
+  -- },
+  {
+    "zbirenbaum/neodim",
+    event = "LspAttach",
+    config = function()
+      require("neodim").setup({
+        alpha = 0.5,
+        blend_color = "#000000",
+        update_in_insert = {
+          enable = true,
+          delay = 100,
+        },
+        hide = {
+          virtual_text = true,
+          signs = true,
+          underline = true,
+        },
+      })
+    end,
+  },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      window = {
+        border = "rounded", -- none, single, double, shadow, rounded
+        position = "bottom", -- bottom, top
+        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+        padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+        -- winblend = 10,
+      },
+      layout = {
+        align = "center", -- align columns left, center or right
+      },
+    },
   },
   {
     "tpope/vim-dadbod",
@@ -151,7 +196,32 @@ return {
     end,
   },
   {
-    "christoomey/vim-tmux-navigator",
+    "nagy135/typebreak.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      vim.keymap.set("n", "<leader>tb", require("typebreak").start, { desc = "Typebreak" })
+    end,
+  },
+  {
+    "nguyenvukhang/nvim-toggler",
+    config = function()
+      require("nvim-toggler").setup()
+    end,
+  },
+  {
+    "axelvc/template-string.nvim",
+    config = function()
+      require("template-string").setup({
+        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "python" }, -- filetypes where the plugin is active
+        jsx_brackets = true, -- must add brackets to jsx attributes
+        remove_template_string = false, -- remove backticks when there are no template string
+        restore_quotes = {
+          -- quotes used when "remove_template_string" option is enabled
+          normal = [[']],
+          jsx = [["]],
+        },
+      })
+    end,
   },
   {
     "windwp/nvim-autopairs",

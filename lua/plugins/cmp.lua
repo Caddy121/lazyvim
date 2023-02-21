@@ -14,18 +14,11 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-      local sign = function(opts)
-        vim.fn.sign_define(opts.name, {
-          texthl = opts.name,
-          text = opts.text,
-          numhl = "",
-        })
+      local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "" }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
-
-      sign({ name = "DiagnosticSignError", text = "✘" })
-      sign({ name = "DiagnosticSignWarn", text = "▲" })
-      sign({ name = "DiagnosticSignHint", text = "⚑" })
-      sign({ name = "DiagnosticSignInfo", text = "" })
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")

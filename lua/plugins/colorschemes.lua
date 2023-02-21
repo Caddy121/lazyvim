@@ -1,18 +1,39 @@
 return {
   { "LazyVim/LazyVim", opts = {
-    colorscheme = "nightfox",
+    colorscheme = "horizon",
   } },
 
   { "ellisonleao/gruvbox.nvim", enabled = true },
+  { "sainnhe/gruvbox-material", enabled = true },
   { "Shatur/neovim-ayu", enabled = true },
-  { "catppuccin/nvim", name = "catppuccin", enabled = true },
-  { "sainnhe/sonokai", enabled = true },
   { "lunarvim/horizon.nvim", enabled = true },
-  { "embark-theme/vim", enable = true },
-  { "marko-cerovac/material.nvim", enabled = true },
   { "sainnhe/edge", enabled = true },
   { "Mofiqul/dracula.nvim", enabled = true },
   { "cpea2506/one_monokai.nvim", enabled = true },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    enabled = true,
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha",
+      })
+    end,
+  },
+  {
+    "marko-cerovac/material.nvim",
+    enabled = true,
+    config = function()
+      require("material").setup({
+        styles = {
+          types = { italic = true },
+          keywords = { italic = true },
+          variables = { italic = true },
+          fields = { italic = true },
+        },
+      })
+    end,
+  },
   {
     "EdenEast/nightfox.nvim",
     enabled = true,

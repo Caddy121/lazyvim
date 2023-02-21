@@ -5,6 +5,7 @@ return {
     opts = {
       diagnostics = {
         virtual_text = false,
+        underline = false,
       },
       {
         function()

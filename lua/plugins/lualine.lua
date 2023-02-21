@@ -50,13 +50,27 @@ return {
         options = {
           theme = "auto",
           globalstatus = true,
-          component_separators = "",
-          section_separators = "",
+          component_separators = "┊", --        
+          section_separators = { left = "", right = "" },
           disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
         },
         sections = {
-          lualine_a = { "mode" },
-          lualine_b = { "branch" },
+          -- lualine_a = { "mode" },
+          -- lualine_b = { "branch" },
+          lualine_a = {
+            {
+              "mode",
+              icon = "󰩃 ",
+              separator = { left = "", right = "" },
+              padding = 0,
+              fmt = function(res)
+                return res:sub(1, 1)
+              end,
+            },
+          },
+          lualine_b = {
+            { "branch", color = { gui = "italic" }, separator = { left = "", right = "" } },
+          },
           lualine_c = {
             {
               "diff",
@@ -81,11 +95,11 @@ return {
           },
           lualine_x = {
             -- stylua: ignore
-            {
-              function() return require("noice").api.status.command.get() end,
-              cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-              color = fg("Statement")
-            },
+            -- {
+            --   function() return require("noice").api.status.command.get() end,
+            --   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+            --   color = fg("Statement")
+            -- },
             -- stylua: ignore
             {
               function() return require("noice").api.status.mode.get() end,
@@ -112,7 +126,7 @@ return {
           },
           lualine_z = {
             { "location", separator = "", padding = { left = 1, right = 1 } },
-            { "progress", padding = { left = 1, right = 1 } },
+            { "progress", separator = { left = "", right = "" }, padding = { left = 1, right = 1 } },
           },
         },
         extensions = { "nvim-tree" },
